@@ -36,3 +36,8 @@ def test_search_with_no_match(client):
 def test_cart_requires_login(client):
     response = client.get("/cart")
     assert response.status_code in (301, 302, 401)
+
+
+def test_home_page_shows_delivery_message(client):
+    response = client.get("/")
+    assert b"Free delivery" in response.data
